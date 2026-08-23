@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Herramientas de ventas, remitos y control de stock.">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Gestión comercial</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#1e293b;--muted:#64748b;--canvas:#f5f7fb;--surface:#fff;--line:#dce4f0;--sales:#4f46e5;--stock:#26704a}*{box-sizing:border-box}body{margin:0;background:linear-gradient(150deg,#eef2ff 0,#f5f7fb 42%,#f2f8f4 100%);color:var(--ink);font-family:"DM Sans",Arial,sans-serif;min-height:100vh}.shell{max-width:1060px;margin:auto;padding:54px 28px 70px}.eyebrow{font-size:.72rem;letter-spacing:.14em;font-weight:700;color:var(--sales);margin:0 0 12px}.hero{max-width:680px;margin-bottom:36px}.hero h1{margin:0;letter-spacing:-.05em;font-size:clamp(2.4rem,6vw,4.3rem);line-height:1}.hero p:last-child{font-size:1.06rem;line-height:1.6;color:var(--muted);margin:18px 0 0}.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.module{display:flex;flex-direction:column;min-height:340px;padding:27px;border:1px solid var(--line);border-radius:16px;background:var(--surface);text-decoration:none;color:inherit;box-shadow:0 12px 32px #25345a0c;transition:transform .18s,box-shadow .18s,border-color .18s}.module:hover{transform:translateY(-4px);box-shadow:0 18px 36px #25345a1a}.module:focus-visible{outline:3px solid #a5b4fc;outline-offset:3px}.module-icon{width:52px;height:52px;display:grid;place-items:center;border-radius:13px;font-size:1.55rem;font-weight:700;margin-bottom:36px}.sales .module-icon{background:#eef2ff;color:var(--sales)}.stock .module-icon{background:#edf7f0;color:var(--stock)}.module-tag{font-size:.7rem;letter-spacing:.12em;font-weight:700;margin:0 0 9px}.sales .module-tag{color:var(--sales)}.stock .module-tag{color:var(--stock)}.module h2{font-size:1.55rem;letter-spacing:-.035em;margin:0}.module p{color:var(--muted);line-height:1.55;margin:11px 0 26px}.enter{margin-top:auto;font-weight:700;font-size:.9rem}.sales .enter{color:var(--sales)}.stock .enter{color:var(--stock)}.foot{margin:28px 0 0;color:var(--muted);font-size:.85rem;text-align:center}@media(max-width:640px){.shell{padding:38px 17px 48px}.modules{grid-template-columns:1fr}.module{min-height:270px}.module-icon{margin-bottom:24px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">GESTIÓN COMERCIAL</p>
+      <h1>Ventas y stock</h1>
+      <p>Elegí el módulo que necesitás para tu tarea. Cada uno conserva sus datos y herramientas de manera independiente.</p>
+    </header>
+    <section class="modules" aria-label="Módulos de gestión">
+      <a class="module sales" href="ventas-productos.html">
+        <div class="module-icon" aria-hidden="true">$</div>
+        <p class="module-tag">VENTAS</p>
+        <h2>Ventas y remitos</h2>
+        <p>Importá precios, cargá una venta, indicá el cliente y descargá el remito en JPG.</p>
+        <span class="enter">Ingresar a ventas y remitos →</span>
+      </a>
+      <a class="module stock" href="control-de-stock.html">
+        <div class="module-icon" aria-hidden="true">✓</div>
+        <p class="module-tag">INVENTARIO</p>
+        <h2>Control de stock</h2>
+        <p>Contá el inventario físico, detectá faltantes o sobrantes y exportá el resultado.</p>
+        <span class="enter">Ingresar a control de stock →</span>
+      </a>
+    </section>
+    <p class="foot">Los módulos trabajan con sus propios datos guardados en este dispositivo.</p>
+  </main>
+  <script>
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+  </script>
+</body>
+</html>

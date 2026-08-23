@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>Ventas y stock</title>
+  <rect width="512" height="512" rx="112" fill="#4f46e5"/>
+  <path d="M112 138h288v70H112z" fill="#fff" opacity=".98"/>
+  <path d="M112 244h288v130H112z" fill="#eef2ff"/>
+  <path d="M154 285h204M154 329h120" stroke="#4f46e5" stroke-width="24" stroke-linecap="round"/>
+  <path d="M334 338l28 28 54-70" fill="none" stroke="#26704a" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="160" cy="173" r="16" fill="#4f46e5"/>
+  <path d="M208 173h142" stroke="#4f46e5" stroke-width="22" stroke-linecap="round"/>
+</svg>
