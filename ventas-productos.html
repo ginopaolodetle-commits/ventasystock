@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5" />
+  <title>Ventas · Remitos</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#202522;--muted:#747a76;--canvas:#f6f7f6;--surface:#fff;--line:#e3e8e5;--accent:#266d49;--accent-bg:#edf7f0;--danger:#b64a43}*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font-family:"DM Sans",Arial,sans-serif}.shell{max-width:1200px;margin:auto;padding:40px 28px 70px}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:29px}.kicker{font-size:.69rem;letter-spacing:.14em;font-weight:700;color:var(--muted);margin:0 0 8px}.topbar h1{margin:0;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.05em;line-height:1.05}.topbar p:last-child{color:var(--muted);margin:10px 0 0;line-height:1.5}.button{border:1px solid transparent;background:var(--ink);color:#fff;border-radius:7px;padding:11px 14px;font:600 .87rem "DM Sans";cursor:pointer;white-space:nowrap}.button:hover{background:#3a403c}.button.outline{background:var(--surface);border-color:var(--line);color:var(--ink)}.button:disabled{background:#f0f2f0;color:#9ba29d;cursor:not-allowed}.import-box{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:25px;display:flex;align-items:center;gap:18px}.icon{display:grid;place-items:center;width:40px;height:40px;border-radius:7px;background:#f0f2f0;color:var(--muted);font-size:1.3rem}.import-box h2{font-size:1rem;margin:0 0 4px}.import-box p{color:var(--muted);font-size:.88rem;margin:0}.import-label{margin-left:auto;background:#f0f2f0;color:var(--ink);border-radius:7px;padding:10px 13px;font-size:.86rem;font-weight:600;cursor:pointer;white-space:nowrap}.customer{display:grid;grid-template-columns:1fr auto;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:14px;margin-bottom:17px}.field-label{font-size:.72rem;display:block;color:var(--muted);font-weight:700;letter-spacing:.04em;margin:0 0 6px}.customer input,.search input{width:100%;border:0;outline:0;font:600 1.05rem "DM Sans";color:var(--ink)}.customer-meta{text-align:right;color:var(--muted);font-size:.8rem}.customer-meta strong{color:var(--ink);display:block;font-size:.98rem;margin-top:3px}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px}.catalogue{background:var(--surface);border:1px solid var(--line);border-radius:9px;overflow:hidden}.catalogue-head{padding:14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center}.search{display:flex;align-items:center;gap:8px;flex:1;background:#f6f7f6;border-radius:6px;padding:9px 10px}.search span{color:var(--muted)}.count{font-size:.76rem;color:var(--muted);white-space:nowrap}.products{max-height:595px;overflow:auto}.product-row{display:grid;grid-template-columns:90px minmax(180px,1fr) 110px 86px;align-items:center;gap:14px;padding:13px 15px;border-bottom:1px solid #eff1ef}.product-row:last-child{border-bottom:0}.code{font: .74rem "DM Mono",monospace;color:var(--muted)}.name{font-size:.91rem;font-weight:600}.category{font-size:.73rem;color:var(--muted);margin-top:2px}.price{font-size:.9rem;font-weight:600;text-align:right}.qty{width:100%;border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center;font:600 .94rem "DM Sans";outline-color:#8fb39e}.empty-row{padding:35px 20px;color:var(--muted);text-align:center;font-size:.9rem}.ticket{background:var(--surface);border:1px solid var(--line);border-radius:9px;align-self:start;overflow:hidden}.ticket-top{padding:17px;border-bottom:1px solid var(--line)}.ticket-top h2{font-size:1rem;margin:0}.ticket-top p{font-size:.78rem;color:var(--muted);margin:4px 0 0}.ticket-items{padding:2px 17px;max-height:380px;overflow:auto}.ticket-item{display:grid;grid-template-columns:1fr auto;gap:10px;padding:11px 0;border-bottom:1px solid #eff1ef}.ticket-item p{margin:0;font-size:.82rem;font-weight:600}.ticket-item small{color:var(--muted);font-size:.72rem}.ticket-item strong{font-size:.84rem;align-self:center}.ticket-empty{color:var(--muted);font-size:.85rem;margin:19px 0}.ticket-total{padding:16px 17px;background:#f8faf8;display:flex;justify-content:space-between;align-items:baseline}.ticket-total span{font-size:.8rem;color:var(--muted);font-weight:600}.ticket-total strong{font-size:1.4rem;letter-spacing:-.04em}.ticket-foot{padding:13px 17px}.ticket-foot .button{width:100%}.note{font-size:.71rem;line-height:1.45;color:var(--muted);margin:9px 0 0;text-align:center}.notice{margin:14px 0 0;color:var(--danger);font-size:.84rem}.hidden{display:none!important}@media(max-width:800px){.shell{padding:28px 15px 50px}.topbar{align-items:flex-start;flex-direction:column;margin-bottom:23px}.import-box{align-items:flex-start;flex-wrap:wrap;padding:19px}.import-label{margin-left:58px}.customer{grid-template-columns:1fr}.customer-meta{text-align:left}.workspace{grid-template-columns:1fr}.ticket{position:sticky;bottom:8px;box-shadow:0 8px 30px #2330221a}.ticket-items{display:none}.ticket-top{display:none}.product-row{grid-template-columns:62px minmax(0,1fr) 78px;gap:9px;padding:12px}.price{grid-column:2;text-align:left;font-size:.8rem;color:var(--muted)}.qty{grid-column:3;grid-row:1 / span 2}.catalogue-head{flex-wrap:wrap}.count{width:100%}}
+    .top-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.category-filter{border:1px solid var(--line);border-radius:6px;background:#fff;padding:9px 10px;color:var(--ink);font:500 .82rem "DM Sans";outline:0}@media(max-width:800px){.top-actions{width:100%}.top-actions>*{flex:1;text-align:center}.category-filter{flex:1;min-width:145px}}
+  </style>
+  <style>
+    :root{--canvas:#f5f7fb;--ink:#1e293b;--muted:#718096;--line:#e2e8f0;--accent:#4f46e5;--accent-bg:#eef2ff}
+    .topbar{background:linear-gradient(125deg,#4338ca,#2563a8);border-radius:14px;padding:28px 30px;margin-bottom:26px;box-shadow:0 12px 30px rgba(53,72,157,.16)}
+    .topbar .kicker{color:#c7d2fe}.topbar h1{color:#fff}.topbar p:last-child{color:#e0e7ff}.topbar .button.outline{background:#fff;color:#3730a3;border-color:#fff}.topbar .button.outline:hover{background:#eef2ff}
+    .import-box{border-color:#dbe3f0}.icon{background:var(--accent-bg);color:var(--accent)}
+    .customer{border-left:4px solid var(--accent)}.customer input:focus{color:var(--accent)}
+    .catalogue-head{background:#fafbff}.search{background:#eef2ff}.search span{color:var(--accent)}.category-filter{border-color:#cfd7ee;color:#3730a3}
+    .product-row:focus-within{background:#fbfcff}.qty:focus{border-color:#818cf8;box-shadow:0 0 0 3px #eef2ff}
+    .ticket{border-color:#d9e1ee}.ticket-top{background:#f4f6ff}.ticket-total{background:linear-gradient(105deg,#4338ca,#2563a8)}.ticket-total span,.ticket-total strong{color:#fff}.ticket-foot .button{background:var(--accent)}.ticket-foot .button:hover{background:#4338ca}
+    @media(max-width:800px){.topbar{padding:23px 20px;border-radius:11px}.topbar .button.outline{color:#3730a3}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div><p class="kicker">VENTAS</p><h1>Nuevo remito</h1><p>Importá tu lista de precios y armá una venta en pocos pasos.</p></div>
+      <div class="top-actions"><a class="button outline" href="index.html">Inicio</a><label id="import-label" class="button outline" for="excel-file">Importar Excel</label><button id="new-receipt" class="button outline hidden" type="button">Nuevo remito</button></div><input id="excel-file" type="file" accept=".xlsx,.xls" hidden>
+    </header>
+    <section class="import-box" id="empty-state">
+      <div class="icon">↥</div><div><h2>Importá tu lista de productos</h2><p>Usá el botón <strong>Importar Excel</strong> de arriba. La planilla debe incluir: <strong>codigo</strong>, <strong>articulo</strong>, <strong>subrubro</strong> y <strong>precio</strong>.</p></div>
+    </section>
+    <section id="workspace" class="hidden">
+      <section class="customer">
+        <div><label class="field-label" for="customer-name">CLIENTE</label><input id="customer-name" placeholder="Escribí el nombre del cliente" autocomplete="off"></div>
+        <div class="customer-meta">Fecha<strong id="sale-date"></strong></div>
+      </section>
+      <div class="workspace">
+        <section class="catalogue">
+          <div class="catalogue-head"><div class="search"><span>⌕</span><input id="search" placeholder="Buscar por código o artículo"></div><select id="category-filter" class="category-filter" aria-label="Filtrar por subrubro"><option value="">Todos los subrubros</option></select><span class="count" id="product-count"></span></div>
+          <div id="products" class="products"></div>
+        </section>
+        <aside class="ticket">
+          <div class="ticket-top"><h2>Resumen de venta</h2><p>Los artículos con cantidad ingresada aparecen aquí.</p></div>
+          <div class="ticket-items" id="ticket-items"></div>
+          <div class="ticket-total"><span>TOTAL</span><strong id="total">$ 0</strong></div>
+          <div class="ticket-foot"><button id="jpg-button" class="button" disabled>Descargar remito JPG</button><p class="note">El archivo se genera con el cliente, fecha, productos y total de esta venta.</p></div>
+        </aside>
+      </div>
+      <p class="notice hidden" id="notice"></p>
+    </section>
+  </main>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');</script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script>
+    const state={products:[],search:'',category:'',customer:''};
+    const $=s=>document.querySelector(s);
+    const money=value=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:2}).format(value);
+    const number=value=>{if(typeof value==='number')return value;return Number(String(value??'').replace(/\./g,'').replace(',','.'))||0};
+    const normalize=value=>String(value??'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const dateText=()=>new Intl.DateTimeFormat('es-AR',{dateStyle:'medium'}).format(new Date());
+    const keyFor=p=>String(p.codigo);
+    function save(){localStorage.setItem('ventas-productos',JSON.stringify(state.products))}
+    function restore(){try{const data=JSON.parse(localStorage.getItem('ventas-productos'));if(Array.isArray(data)&&data.length){state.products=data;start()}}catch{}}
+    function start(){$('#empty-state').classList.add('hidden');$('#workspace').classList.remove('hidden');$('#sale-date').textContent=dateText();$('#import-label').textContent='Cambiar Excel';$('#new-receipt').classList.remove('hidden');const categories=[...new Set(state.products.map(p=>p.subrubro).filter(Boolean))].sort();$('#category-filter').innerHTML='<option value="">Todos los subrubros</option>'+categories.map(c=>`<option value="${escape(c)}">${escape(c)}</option>`).join('');render()}
+    function visible(){const q=normalize(state.search);const exact=q&&state.products.some(p=>normalize(p.codigo)===q);return state.products.filter(p=>(!state.category||p.subrubro===state.category)&&(!q||(exact?normalize(p.codigo)===q:normalize(p.articulo).includes(q))))}
+    function sold(){return state.products.filter(p=>p.qty>0)}
+    function render(){
+      const list=visible(), products=$('#products');products.replaceChildren();$('#product-count').textContent=`${list.length} artículos`;
+      if(!list.length){products.innerHTML='<p class="empty-row">No encontramos artículos con esa búsqueda.</p>'}
+      list.forEach(p=>{const row=document.createElement('div');row.className='product-row';row.innerHTML=`<span class="code">${escape(p.codigo)}</span><div><div class="name">${escape(p.articulo)}</div><div class="category">${escape(p.subrubro||'Sin subrubro')}</div></div><span class="price">${money(p.precio)}</span><input class="qty" type="number" min="0" inputmode="numeric" placeholder="0" aria-label="Cantidad de ${escape(p.articulo)}">`;const input=row.querySelector('input');input.value=p.qty||'';input.addEventListener('input',e=>{p.qty=Math.max(0,Number(e.target.value)||0);save();renderTicket()});products.append(row)});
+      renderTicket();
+    }
+    function renderTicket(){
+      const items=sold(), holder=$('#ticket-items');holder.replaceChildren();
+      if(!items.length)holder.innerHTML='<p class="ticket-empty">Todavía no agregaste artículos.</p>';
+      items.forEach(p=>{const line=document.createElement('div');line.className='ticket-item';line.innerHTML=`<div><p>${escape(p.articulo)}</p><small>${p.qty} × ${money(p.precio)}</small></div><strong>${money(p.qty*p.precio)}</strong>`;holder.append(line)});
+      const total=items.reduce((sum,p)=>sum+p.qty*p.precio,0);$('#total').textContent=money(total);$('#jpg-button').disabled=!items.length;
+    }
+    function escape(value){return String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+    $('#excel-file').addEventListener('change',async event=>{
+      const file=event.target.files[0];if(!file)return;if(!window.XLSX){showNotice('No se pudo cargar el lector de Excel. Revisá tu conexión e intentá otra vez.');return}
+      try{const book=XLSX.read(await file.arrayBuffer(),{type:'array'});const rows=XLSX.utils.sheet_to_json(book.Sheets[book.SheetNames[0]],{defval:''});state.products=rows.map(row=>{const r={};Object.entries(row).forEach(([k,v])=>r[normalize(k)]=v);return{codigo:r.codigo,articulo:r.articulo,subrubro:r.subrubro,precio:number(r.precio),qty:0}}).filter(p=>p.codigo||p.articulo);if(!state.products.length)throw Error('No encontramos artículos para importar.');save();start()}catch(error){showNotice('No pudimos importar el archivo. '+error.message)}});
+    $('#search').addEventListener('input',e=>{state.search=e.target.value;render()});
+    $('#category-filter').addEventListener('change',e=>{state.category=e.target.value;render()});
+    $('#customer-name').addEventListener('input',e=>state.customer=e.target.value);
+    $('#new-receipt').addEventListener('click',()=>{state.products.forEach(p=>p.qty=0);state.customer='';state.search='';state.category='';$('#customer-name').value='';$('#search').value='';$('#category-filter').value='';save();render();$('#customer-name').focus()});
+    function showNotice(message){const notice=$('#notice');notice.textContent=message;notice.classList.remove('hidden')}
+    $('#jpg-button').addEventListener('click',()=>makeJpg());
+    function makeJpg(){
+      const items=sold(), customer=$('#customer-name').value.trim()||'Cliente sin nombre', total=items.reduce((sum,p)=>sum+p.qty*p.precio,0);
+      const width=1400, top=300, row=74, bottom=170, height=Math.max(800,top+items.length*row+bottom);
+      const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;const c=canvas.getContext('2d');
+      c.fillStyle='#ffffff';c.fillRect(0,0,width,height);c.fillStyle='#202522';c.font='700 56px Arial';c.fillText('REMITO',78,95);c.fillStyle='#747a76';c.font='24px Arial';c.fillText('Comprobante de venta',80,135);
+      c.textAlign='right';c.fillStyle='#202522';c.font='600 26px Arial';c.fillText(dateText(),width-80,94);c.fillStyle='#747a76';c.font='20px Arial';c.fillText('Fecha de emisión',width-80,130);
+      c.fillStyle='#f4f7f5';c.fillRect(78,177,width-156,74);c.textAlign='left';c.fillStyle='#747a76';c.font='bold 17px Arial';c.fillText('CLIENTE',102,207);c.fillStyle='#202522';c.font='600 27px Arial';c.fillText(customer,102,236);
+      const y=300;c.fillStyle='#202522';c.font='bold 18px Arial';c.fillText('ARTÍCULO',80,y);c.fillText('CANT.',920,y);c.textAlign='right';c.fillText('PRECIO',1110,y);c.fillText('SUBTOTAL',1320,y);c.strokeStyle='#dfe5e1';c.lineWidth=2;c.beginPath();c.moveTo(80,y+18);c.lineTo(1320,y+18);c.stroke();
+      items.forEach((p,i)=>{const py=y+62+i*row;c.textAlign='left';c.fillStyle='#202522';c.font='600 22px Arial';c.fillText(String(p.articulo).slice(0,52),80,py);c.fillStyle='#747a76';c.font='17px Arial';c.fillText(`Código: ${p.codigo} · ${p.subrubro||'Sin subrubro'}`,80,py+25);c.fillStyle='#202522';c.font='21px Arial';c.fillText(String(p.qty),920,py+8);c.textAlign='right';c.fillText(money(p.precio),1110,py+8);c.font='600 22px Arial';c.fillText(money(p.qty*p.precio),1320,py+8);c.strokeStyle='#edf0ed';c.beginPath();c.moveTo(80,py+42);c.lineTo(1320,py+42);c.stroke()});
+      const fy=top+items.length*row+54;c.fillStyle='#f4f7f5';c.fillRect(820,fy,500,78);c.textAlign='left';c.fillStyle='#747a76';c.font='bold 18px Arial';c.fillText('TOTAL',850,fy+31);c.textAlign='right';c.fillStyle='#202522';c.font='700 34px Arial';c.fillText(money(total),1290,fy+50);
+      c.textAlign='left';c.fillStyle='#747a76';c.font='17px Arial';c.fillText('Gracias por tu compra.',80,height-65);
+      const link=document.createElement('a');link.download=`remito-${customer.replace(/[^a-z0-9]/gi,'-').toLowerCase()||'venta'}.jpg`;link.href=canvas.toDataURL('image/jpeg',.94);link.click();
+    }
+    restore();
+  </script>
+</body>
+</html>

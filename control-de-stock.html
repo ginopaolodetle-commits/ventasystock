@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#26704a" />
+    <title>Control de stock</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet" />
+    <style>
+:root{--ink:#202522;--muted:#747a76;--canvas:#f6f7f6;--surface:#fff;--line:#e4e8e5;--green:#26704a;--green-bg:#edf7f0;--red:#b94c45;--red-bg:#fff1f0;--orange:#b56d27;--orange-bg:#fff6e9}*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font-family:"DM Sans",Arial,sans-serif}.app-shell{max-width:1180px;margin:auto;padding:40px 28px 72px}.hero{display:flex;justify-content:space-between;gap:26px;align-items:flex-end;margin-bottom:32px}.eyebrow{font-size:.69rem;letter-spacing:.13em;font-weight:700;color:var(--muted);margin:0 0 8px}.hero h1{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.045em;line-height:1.05;margin:0;font-weight:600}.subtitle{color:var(--muted);max-width:540px;line-height:1.55;margin:12px 0 0}.hero-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.button,.text-link{border:1px solid transparent;border-radius:7px;padding:10px 14px;font:600 .87rem "DM Sans";cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}.primary{background:var(--ink);color:#fff}.primary:hover{background:#3a403c}.secondary{background:var(--surface);border-color:var(--line);color:var(--ink)}.secondary:disabled{cursor:not-allowed;color:#a4aaa6;background:#f1f3f1}.upload-card{display:flex;align-items:center;gap:17px;padding:22px;border:1px solid var(--line);border-radius:9px;background:var(--surface)}.upload-icon{width:38px;height:38px;border-radius:7px;background:#f0f2f0;display:grid;place-items:center;color:var(--muted);font-size:1.35rem}.upload-card h2{font-size:1rem;margin:0 0 4px}.upload-card p{margin:0;color:var(--muted);font-size:.88rem}.text-link{margin-left:auto;color:var(--ink);background:#f1f3f1;white-space:nowrap}.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:2px 0 24px}.summary-card{border-radius:8px;padding:16px;background:var(--surface);border:1px solid var(--line);display:grid;gap:3px}.summary-card span,.summary-card small{font-size:.76rem;color:var(--muted)}.summary-card strong{font-size:1.55rem;line-height:1.1;font-weight:600}.matched strong{color:var(--green)}.short strong{color:var(--red)}.excess strong{color:var(--orange)}.toolbar{display:flex;gap:9px;align-items:center;margin-bottom:13px}.search-wrap{background:var(--surface);border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;gap:8px;padding:0 11px;flex:1}.search-wrap span{color:var(--muted);font-size:1.15rem}.search-wrap input,select{font:inherit;border:0;outline:0;background:transparent;color:var(--ink)}.search-wrap input{padding:10px 0;width:100%}select{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:10px;min-width:185px}.ghost{color:var(--muted);padding:10px;background:transparent}.legend{display:flex;gap:18px;color:var(--muted);font-size:.78rem;margin:15px 0}.legend span{display:flex;align-items:center;gap:6px}.dot{height:7px;width:7px;border-radius:50%;display:inline-block}.green{background:var(--green)}.red{background:var(--red)}.orange{background:var(--orange)}.inventory{display:grid;gap:9px}.product-card{background:var(--surface);border:1px solid var(--line);border-left:3px solid #d7dcd8;border-radius:8px;padding:17px 18px;transition:border-color .15s}.product-card.matched{border-left-color:var(--green)}.product-card.short{border-left-color:var(--red)}.product-card.excess{border-left-color:var(--orange)}.product-top{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.code{font-size:.69rem;color:var(--muted);font-weight:700;letter-spacing:.07em;margin:0}.product-name{font-size:1rem;margin:4px 0;font-weight:600}.category{font-size:.79rem;color:var(--muted);margin:0}.theoretical{text-align:right;white-space:nowrap}.theoretical span,.result-row span{display:block;font-size:.73rem;color:var(--muted)}.theoretical strong{font-size:1.1rem;font-weight:600}.count-inputs{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:16px 0}.count-inputs label{font-size:.73rem;color:var(--muted);font-weight:600}.count-inputs input{display:block;width:100%;margin-top:5px;border:1px solid var(--line);border-radius:6px;background:#fff;padding:8px 9px;font:600 .96rem "DM Sans";color:var(--ink);outline-color:#8bb49a}.result-row{display:flex;align-items:center;gap:26px;border-top:1px solid var(--line);padding-top:13px}.result-row strong{font-size:1rem;font-weight:600}.status{margin-left:auto!important;border-radius:5px;padding:5px 8px;font-size:.72rem!important;font-weight:700;background:#f0f2f0;color:var(--muted)}.product-card.matched .status{background:var(--green-bg);color:var(--green)}.product-card.short .status{background:var(--red-bg);color:var(--red)}.product-card.excess .status{background:var(--orange-bg);color:var(--orange)}.no-results{text-align:center;color:var(--muted);padding:30px}@media(max-width:720px){.app-shell{padding:28px 15px 52px}.hero{align-items:flex-start;flex-direction:column;margin-bottom:24px}.hero-actions{justify-content:flex-start;width:100%}.hero-actions .button{flex:1}.upload-card{align-items:flex-start;flex-wrap:wrap;padding:18px}.upload-card .text-link{margin-left:55px}.summary-grid{grid-template-columns:repeat(2,1fr);gap:8px}.summary-card{padding:13px}.toolbar{display:grid;grid-template-columns:1fr auto}.search-wrap{grid-column:1/-1}.ghost{justify-self:end}.legend{gap:10px;flex-wrap:wrap}.product-card{padding:15px}.count-inputs{grid-template-columns:repeat(2,1fr);gap:11px}.result-row{gap:15px}.status{padding:5px 7px!important}}@media(max-width:390px){.result-row{gap:10px}.result-row strong{font-size:.88rem}}
+
+</style>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">INVENTARIO</p>
+          <h1>Control de stock</h1>
+          <p class="subtitle">Importá tu planilla, contá con tranquilidad y detectá las diferencias al instante.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="button secondary" href="index.html">Inicio</a>
+          <label class="button primary" for="excel-file">Importar Excel</label>
+          <input id="excel-file" type="file" accept=".xlsx,.xls" hidden />
+          <button class="button secondary" id="export-button" type="button" disabled>Exportar resultado</button>
+        </div>
+      </header>
+
+      <section class="upload-card" id="empty-state">
+        <div class="upload-icon">↥</div>
+        <div>
+          <h2>Empezá con tu archivo de stock</h2>
+          <p>Elegí un Excel con las columnas: <strong>codigo</strong>, <strong>articulo</strong>, <strong>subrubro</strong> y <strong>cantidad</strong>.</p>
+        </div>
+        <label class="text-link" for="excel-file">Seleccionar archivo</label>
+      </section>
+
+      <section id="workspace" hidden>
+        <section class="summary-grid" aria-label="Resumen del inventario">
+          <article class="summary-card total"><span>Artículos</span><strong id="total-items">0</strong><small>en el inventario</small></article>
+          <article class="summary-card matched"><span>Sin diferencia</span><strong id="matched-items">0</strong><small>stock conciliado</small></article>
+          <article class="summary-card short"><span>Faltantes</span><strong id="short-items">0</strong><small>requieren revisión</small></article>
+          <article class="summary-card excess"><span>Sobrantes</span><strong id="excess-items">0</strong><small>requieren revisión</small></article>
+        </section>
+
+        <section class="toolbar">
+          <div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="Buscar por código o artículo" /></div>
+          <select id="category-filter" aria-label="Filtrar por subrubro"><option value="">Todos los subrubros</option></select>
+          <button class="button ghost" id="clear-filters" type="button">Limpiar filtros</button>
+        </section>
+
+        <div class="legend"><span><i class="dot green"></i>Sin diferencia</span><span><i class="dot red"></i>Faltante</span><span><i class="dot orange"></i>Sobrante</span></div>
+
+        <section class="inventory" id="inventory" aria-live="polite"></section>
+        <p class="no-results" id="no-results" hidden>No encontramos artículos con esos filtros.</p>
+      </section>
+    </main>
+
+    <template id="item-template">
+      <article class="product-card">
+        <div class="product-top">
+          <div><p class="code"></p><h2 class="product-name"></h2><p class="category"></p></div>
+          <div class="theoretical"><span>Stock tabla</span><strong></strong></div>
+        </div>
+        <div class="count-inputs">
+          <label><span>Cajas × 40</span><input inputmode="numeric" type="number" min="0" class="box40" placeholder="0" /></label>
+          <label><span>Cajas × 25</span><input inputmode="numeric" type="number" min="0" class="box25" placeholder="0" /></label>
+          <label><span>Cajas × 10</span><input inputmode="numeric" type="number" min="0" class="box10" placeholder="0" /></label>
+          <label><span>Unidades sueltas</span><input inputmode="numeric" type="number" min="0" class="units" placeholder="0" /></label>
+        </div>
+        <div class="result-row"><div><span>Stock físico</span><strong class="physical">0</strong></div><div><span>Diferencia</span><strong class="difference">0</strong></div><span class="status">Pendiente</span></div>
+      </article>
+    </template>
+
+    <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');</script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script>
+const state = { products: [], search: '', category: '' };
+const els = {
+  file: document.querySelector('#excel-file'), workspace: document.querySelector('#workspace'), empty: document.querySelector('#empty-state'), inventory: document.querySelector('#inventory'), template: document.querySelector('#item-template'), search: document.querySelector('#search'), category: document.querySelector('#category-filter'), export: document.querySelector('#export-button'), noResults: document.querySelector('#no-results')
+};
+
+const number = value => Math.max(0, Number(value) || 0);
+const normalize = value => String(value ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const keyFor = item => `${item.codigo}|${item.articulo}|${item.subrubro}`;
+
+function calculate(item) {
+  item.fisico = item.box40 * 40 + item.box25 * 25 + item.box10 * 10 + item.units;
+  item.diferencia = item.fisico - item.cantidad;
+  item.status = item.diferencia === 0 ? 'Listo' : item.diferencia < 0 ? 'Listo · Faltante' : 'Listo · Sobrante';
+  item.kind = item.diferencia === 0 ? 'matched' : item.diferencia < 0 ? 'short' : 'excess';
+}
+
+function persist() { localStorage.setItem('control-stock-items', JSON.stringify(state.products)); }
+function restore() { try { const saved = JSON.parse(localStorage.getItem('control-stock-items')); if (Array.isArray(saved) && saved.length) { state.products = saved; state.products.forEach(calculate); initialize(); } } catch {} }
+
+function initialize() {
+  els.empty.hidden = true; els.workspace.hidden = false; els.export.disabled = false;
+  const categories = [...new Set(state.products.map(p => p.subrubro).filter(Boolean))].sort();
+  els.category.innerHTML = '<option value="">Todos los subrubros</option>' + categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+  render();
+}
+
+function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char])); }
+function filteredProducts() {
+  const search = normalize(state.search);
+  const exactCodeSearch = search && state.products.some(p => normalize(p.codigo) === search);
+  return state.products.filter(p => {
+    const belongsToCategory = !state.category || p.subrubro === state.category;
+    const matchesSearch = !search || (exactCodeSearch ? normalize(p.codigo) === search : normalize(p.articulo).includes(search));
+    return belongsToCategory && matchesSearch;
+  });
+}
+
+function render() {
+  const products = filteredProducts(); els.inventory.replaceChildren(); els.noResults.hidden = products.length > 0;
+  products.forEach(product => {
+    const node = els.template.content.cloneNode(true);
+    const card = node.querySelector('.product-card'); card.dataset.key = keyFor(product); card.classList.add(product.kind);
+    node.querySelector('.code').textContent = `CÓDIGO ${product.codigo}`;
+    node.querySelector('.product-name').textContent = product.articulo;
+    node.querySelector('.category').textContent = product.subrubro || 'Sin subrubro';
+    node.querySelector('.theoretical strong').textContent = product.cantidad;
+    [['box40', product.box40], ['box25', product.box25], ['box10', product.box10], ['units', product.units]].forEach(([field, value]) => { node.querySelector(`.${field}`).value = value || ''; });
+    node.querySelector('.physical').textContent = product.fisico;
+    node.querySelector('.difference').textContent = product.diferencia > 0 ? `+${product.diferencia}` : product.diferencia;
+    node.querySelector('.status').textContent = product.status;
+    els.inventory.append(node);
+  });
+  updateSummary();
+}
+
+function updateSummary() {
+  const counts = { matched: 0, short: 0, excess: 0 }; state.products.forEach(p => counts[p.kind]++);
+  document.querySelector('#total-items').textContent = state.products.length;
+  document.querySelector('#matched-items').textContent = counts.matched;
+  document.querySelector('#short-items').textContent = counts.short;
+  document.querySelector('#excess-items').textContent = counts.excess;
+}
+
+els.file.addEventListener('change', async event => {
+  const file = event.target.files[0]; if (!file) return;
+  if (!window.XLSX) { alert('No se pudo cargar el lector de Excel. Revisá tu conexión e intentá nuevamente.'); return; }
+  try {
+    const data = await file.arrayBuffer(); const book = XLSX.read(data, { type: 'array' }); const rows = XLSX.utils.sheet_to_json(book.Sheets[book.SheetNames[0]], { defval: '' });
+    const previous = new Map(state.products.map(p => [keyFor(p), p]));
+    state.products = rows.map(row => {
+      const values = {}; Object.entries(row).forEach(([key, val]) => values[normalize(key)] = val);
+      const item = { codigo: values.codigo, articulo: values.articulo, subrubro: values.subrubro, cantidad: number(values.cantidad), box40: 0, box25: 0, box10: 0, units: 0 };
+      if (!item.codigo && !item.articulo) return null;
+      const old = previous.get(keyFor(item)); if (old) Object.assign(item, { box40: old.box40, box25: old.box25, box10: old.box10, units: old.units }); calculate(item); return item;
+    }).filter(Boolean);
+    if (!state.products.length) throw new Error('No encontramos filas con código o artículo.');
+    persist(); initialize();
+  } catch (error) { alert(`No pudimos importar el archivo. ${error.message}`); }
+});
+
+els.inventory.addEventListener('input', event => {
+  if (!event.target.matches('.box40,.box25,.box10,.units')) return;
+  const card = event.target.closest('.product-card'); const item = state.products.find(p => keyFor(p) === card.dataset.key); if (!item) return;
+  item[event.target.className] = number(event.target.value); calculate(item); persist(); render();
+  const next = document.querySelector(`[data-key="${CSS.escape(card.dataset.key)}"] .${event.target.className}`); next?.focus();
+});
+els.search.addEventListener('input', event => { state.search = event.target.value; render(); });
+els.category.addEventListener('change', event => { state.category = event.target.value; render(); });
+document.querySelector('#clear-filters').addEventListener('click', () => { state.search = ''; state.category = ''; els.search.value = ''; els.category.value = ''; render(); });
+els.export.addEventListener('click', () => {
+  if (!window.XLSX) return;
+  const output = state.products.map(p => ({ Código: p.codigo, Artículo: p.articulo, Subrubro: p.subrubro, 'Stock tabla': p.cantidad, 'Cajas x 40': p.box40, 'Cajas x 25': p.box25, 'Cajas x 10': p.box10, 'Unidades sueltas': p.units, 'Stock físico': p.fisico, Diferencia: p.diferencia, Estado: p.status }));
+  const sheet = XLSX.utils.json_to_sheet(output); const book = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(book, sheet, 'Conteo'); XLSX.writeFile(book, 'control-de-stock.xlsx');
+});
+restore();
+
+</script>
+  </body>
+</html>
