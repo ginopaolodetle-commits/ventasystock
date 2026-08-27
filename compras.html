@@ -23,6 +23,7 @@
     .button.primary{background:var(--accent);color:#fff}.button.primary:hover{background:#3730a3}
     .button.secondary{background:var(--surface);color:var(--ink);border:1px solid var(--line)}.button.secondary:hover{background:var(--canvas)}
     .button.danger{background:var(--danger);color:#fff}.button.danger:hover{background:#a83d36}
+    .button.small{padding:6px 12px;font-size:12px}
     .button:disabled{opacity:0.5;cursor:not-allowed}
     .import-box{background:var(--surface);border:2px dashed var(--line);border-radius:10px;padding:40px 30px;text-align:center;margin-bottom:26px}
     .import-box .icon{display:inline-block;font-size:48px;margin-bottom:15px;background:var(--accent-bg);width:80px;height:80px;border-radius:10px;display:flex;align-items:center;justify-content:center}
@@ -87,12 +88,14 @@
     .day-cell.selected{background:var(--accent);color:#fff;font-weight:700}
     .day-cell.has-purchases{font-weight:700;border-color:var(--accent);border-width:2px}
     .purchases-list{margin-top:20px}
-    .purchase-card{background:var(--canvas);padding:15px;border-radius:8px;margin-bottom:10px;border-left:4px solid var(--accent)}
+    .purchase-card{background:var(--canvas);padding:15px;border-radius:8px;margin-bottom:10px;border-left:4px solid var(--accent);display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+    .purchase-card-content{flex:1}
     .purchase-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
     .purchase-card-name{font-weight:700;color:var(--ink);font-size:14px}
     .purchase-card-time{font-size:11px;color:var(--muted)}
     .purchase-card-items{font-size:12px;color:var(--muted);margin:5px 0}
     .purchase-card-total{font-weight:700;color:var(--accent);font-size:14px}
+    .purchase-card-delete{flex-shrink:0}
     .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
     .modal-close{background:var(--canvas);color:var(--ink);padding:10px 20px;border-radius:6px;border:1px solid var(--line);cursor:pointer;font-weight:600}
     .modal-close:hover{background:var(--line)}
@@ -108,7 +111,8 @@
     .product-row,.table-header{grid-template-columns:80px 1fr 60px 60px;gap:8px}
     .product-row .subtotal{display:none}.table-header>div:nth-child(n+3){display:none}
     .product-row>:nth-child(n+3){display:none}.ticket{order:2}.catalogue{order:1}
-    .header-buttons{flex-direction:column}}
+    .header-buttons{flex-direction:column}
+    .purchase-card{flex-direction:column}}
   </style>
 </head>
 <body>
@@ -587,6 +591,23 @@
       showNotice(`✓ Compra "${state.purchaseName}" guardada correctamente.`, 'success');
     }
 
+    function deletePurchase(dateKey, index) {
+      if (!confirm('¿Estás seguro de que querés eliminar esta compra?')) {
+        return;
+      }
+
+      if (state.allPurchases[dateKey]) {
+        state.allPurchases[dateKey].splice(index, 1);
+        if (state.allPurchases[dateKey].length === 0) {
+          delete state.allPurchases[dateKey];
+        }
+        save();
+        updateDaySummary();
+        showPurchasesForDate(dateKey);
+        showNotice('✓ Compra eliminada correctamente.', 'success');
+      }
+    }
+
     function exportToExcel() {
       const items = sold();
       if (!items.length) return;
@@ -769,10 +790,13 @@
       const dateLabel = new Intl.DateTimeFormat('es-AR', { dateStyle: 'medium' }).format(dateObj);
       
       let dayTotal = 0;
-      purchases.forEach(p => {
+      purchases.forEach((p, index) => {
         const card = document.createElement('div');
         card.className = 'purchase-card';
-        card.innerHTML = `
+        
+        const content = document.createElement('div');
+        content.className = 'purchase-card-content';
+        content.innerHTML = `
           <div class="purchase-card-header">
             <span class="purchase-card-name">${escape(p.name)}</span>
             <span class="purchase-card-time">${p.timestamp}</span>
@@ -780,6 +804,14 @@
           <div class="purchase-card-items">${p.items} unidades</div>
           <div class="purchase-card-total">${money(p.total)}</div>
         `;
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'button danger small purchase-card-delete';
+        deleteBtn.textContent = '🗑️ Eliminar';
+        deleteBtn.addEventListener('click', () => deletePurchase(dateKey, index));
+        
+        card.appendChild(content);
+        card.appendChild(deleteBtn);
         listContainer.appendChild(card);
         dayTotal += p.total;
       });
