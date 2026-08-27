@@ -31,28 +31,6 @@
     .container{background:var(--surface);border-radius:10px;padding:30px;box-shadow:0 1px 3px rgba(0,0,0,0.05);margin-bottom:20px}
     .container h2{margin:0 0 25px;font-size:24px;color:var(--ink)}
     .bills-list{display:flex;flex-direction:column;gap:12px}
-    .bill-card{background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:10px;padding:18px;border-left:5px solid var(--accent);box-shadow:0 2px 8px rgba(0,0,0,0.08);display:grid;grid-template-columns:1fr auto;gap:15px;align-items:center}
-    .bill-card.bill-20000{border-left-color:#1e40af;background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
-    .bill-card.bill-10000{border-left-color:#0369a1;background:linear-gradient(135deg,#cffafe,#a5f3fc)}
-    .bill-card.bill-5000{border-left-color:#065f46;background:linear-gradient(135deg,#dcfce7,#bbf7d0)}
-    .bill-card.bill-2000{border-left-color:#6d28d9;background:linear-gradient(135deg,#ede9fe,#ddd6fe)}
-    .bill-card.bill-1000{border-left-color:#b91c1c;background:linear-gradient(135deg,#fee2e2,#fecaca)}
-    .bill-card.bill-500{border-left-color:#b45309;background:linear-gradient(135deg,#fef3c7,#fde68a)}
-    .bill-card.bill-100{border-left-color:#7c2d12;background:linear-gradient(135deg,#fed7aa,#fdba74)}
-    .bill-card.bill-50{border-left-color:#4c0519;background:linear-gradient(135deg,#fbcfe8,#f9a8d4)}
-    .bill-card.bill-20{border-left-color:#172554;background:linear-gradient(135deg,#e0e7ff,#c7d2fe)}
-    .bill-card.bill-10{border-left-color:#1f2937;background:linear-gradient(135deg,#f3f4f6,#e5e7eb)}
-    .bill-info{display:flex;justify-content:space-between;align-items:center}
-    .bill-denomination{font-size:28px;font-weight:700;color:var(--ink)}
-    .bill-label{font-size:12px;color:var(--muted);font-weight:600}
-    .bill-controls{display:flex;gap:10px;align-items:center}
-    .bill-controls input{width:80px;padding:8px 12px;border:1px solid rgba(0,0,0,0.1);border-radius:6px;font-size:16px;font-weight:600;text-align:center}
-    .bill-controls input:focus{outline:none;box-shadow:0 0 0 3px rgba(234,88,12,0.2)}
-    .bill-controls button{padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;transition:all 0.2s}
-    .bill-controls button:hover{background:#c2410c}
-    .bill-total{text-align:right}
-    .bill-total .label{display:block;font-size:10px;color:var(--muted);margin-bottom:3px;font-weight:600}
-    .bill-total .amount{display:block;font-size:16px;font-weight:700;color:var(--ink)}
     .summary-section{background:linear-gradient(125deg,#d97706,#f97316);border-radius:10px;padding:25px 30px;color:#fff;margin-bottom:20px}
     .summary-section h3{margin:0 0 20px;font-size:18px;font-weight:600}
     .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
@@ -63,14 +41,17 @@
     .actions button{padding:12px 24px}
     .notice{padding:15px;border-radius:8px;background:#dcfce7;border-left:4px solid #22c55e;color:#166534;font-size:13px;margin-bottom:20px}
     .notice.success{background:#dcfce7;border-left-color:#22c55e;color:#166534}
-    .empty-state{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
+    .notice.error{background:#fee2e2;border-left-color:#b64a43;color:#991b1b}
     .table-header{display:grid;grid-template-columns:1fr auto auto auto;gap:15px;padding:12px 18px;background:#fafbff;border-radius:8px;margin-bottom:12px;font-weight:600;font-size:12px;color:var(--muted)}
-    .bill-row{display:grid;grid-template-columns:1fr auto auto auto;gap:15px;align-items:center}
+    .bill-row{display:grid;grid-template-columns:1fr auto auto auto;gap:15px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+    .bill-row:last-child{border-bottom:none}
     .bill-row-denomination{font-size:16px;font-weight:700;color:var(--ink)}
-    .bill-row-value{text-align:center;font-weight:600}
-    .bill-row-total{text-align:right;font-weight:600}
-    .total-row{display:grid;grid-template-columns:1fr auto auto auto;gap:15px;padding:15px 18px;background:linear-gradient(125deg,#d97706,#f97316);border-radius:8px;margin-top:15px;color:#fff;font-weight:700}
-    .total-row .label{text-align:right}
+    .bill-row input{width:80px;padding:8px 12px;border:1px solid var(--line);border-radius:6px;font-size:16px;font-weight:600;text-align:center}
+    .bill-row input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+    .bill-row input::placeholder{color:transparent}
+    .bill-row-value{text-align:center;font-weight:600;font-size:14px}
+    .bill-row-total{text-align:right;font-weight:600;font-size:14px}
+    .total-row{display:grid;grid-template-columns:1fr auto auto auto;gap:15px;padding:15px 18px;background:linear-gradient(125deg,#d97706,#f97316);border-radius:8px;margin-top:15px;color:#fff;font-weight:600}
     .total-row .value{text-align:center;font-size:18px}
     .total-row .amount{text-align:right;font-size:18px}
     @media(max-width:768px){
@@ -123,9 +104,6 @@
       </div>
       <div class="bills-list" id="bills-container"></div>
       <div id="total-row-container"></div>
-      <div class="empty-state" id="empty-state">
-        Comenzá a ingresar cantidades de billetes
-      </div>
     </div>
 
     <div class="actions">
@@ -190,25 +168,15 @@
 
     function render() {
       const container = document.querySelector('#bills-container');
-      const emptyState = document.querySelector('#empty-state');
       const totalRowContainer = document.querySelector('#total-row-container');
       container.innerHTML = '';
       totalRowContainer.innerHTML = '';
 
-      // Filtrar solo billetes con cantidad > 0
-      const activeBills = billDenominations.filter(bill => (state.counts[bill.value] || 0) > 0);
-
-      if (activeBills.length === 0) {
-        emptyState.style.display = 'block';
-        return;
-      } else {
-        emptyState.style.display = 'none';
-      }
-
       let totalBills = 0;
       let totalAmount = 0;
 
-      activeBills.forEach(bill => {
+      // Mostrar todos los billetes siempre
+      billDenominations.forEach(bill => {
         const quantity = state.counts[bill.value] || 0;
         const subtotal = quantity * bill.value;
         totalBills += quantity;
@@ -220,10 +188,10 @@
           <div class="bill-row-denomination">${bill.label}</div>
           <input 
             type="number" 
-            value="${quantity}" 
+            value="${quantity > 0 ? quantity : ''}" 
             min="0" 
             data-value="${bill.value}"
-            class="bill-input bill-row-value"
+            class="bill-input"
             placeholder="0"
           >
           <div class="bill-row-value">${money(bill.value)}</div>
@@ -253,7 +221,8 @@
           const value = parseInt(e.target.dataset.value);
           const quantity = Math.max(0, parseInt(e.target.value) || 0);
           state.counts[value] = quantity;
-          e.target.value = quantity;
+          // Limpiar el campo si es 0
+          e.target.value = quantity > 0 ? quantity : '';
           save();
           render();
         });
@@ -314,6 +283,7 @@
       const notice = document.querySelector('#notice');
       notice.textContent = message;
       notice.className = 'notice';
+      if (type === 'error') notice.classList.add('error');
       if (type === 'success') notice.classList.add('success');
       notice.classList.remove('hidden');
       setTimeout(() => notice.classList.add('hidden'), 4000);
