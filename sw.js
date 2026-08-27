@@ -4,6 +4,7 @@ const APP_FILES = [
   './index.html',
   './ventas-productos.html',
   './control-de-stock.html',
+  './compras.html',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png'
