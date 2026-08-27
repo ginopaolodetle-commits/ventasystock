@@ -42,6 +42,7 @@
     .field-label{display:block;font-size:12px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
     .purchase-header input{width:100%;max-width:400px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;font-size:16px;color:var(--ink)}
     .purchase-header input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+    .header-buttons{display:flex;gap:10px}
     .workspace{display:grid;grid-template-columns:1fr 380px;gap:20px;margin-bottom:20px}
     .catalogue{background:var(--surface);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
     .catalogue-head{background:#fafbff;border-bottom:1px solid var(--line);padding:15px}.search{display:flex;align-items:center;gap:8px;background:#eef2ff;border-radius:6px;padding:8px 12px}
@@ -72,17 +73,27 @@
     .table-header>div{text-align:center}.table-header>div:first-child,.table-header>div:nth-child(2){text-align:left}
     .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center}
     .modal.active{display:flex}
-    .modal-content{background:var(--surface);border-radius:12px;padding:30px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+    .modal-content{background:var(--surface);border-radius:12px;padding:30px;max-width:700px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
     .modal-content h2{margin:0 0 20px;color:var(--ink);font-size:24px}
-    .modal-purchases{list-style:none;margin:0 0 20px;padding:0}
-    .modal-purchase-item{background:var(--canvas);padding:15px;border-radius:8px;margin-bottom:10px;border-left:4px solid var(--accent)}
-    .modal-purchase-item .name{font-weight:600;color:var(--ink);margin:0}
-    .modal-purchase-item .cost{font-weight:700;color:var(--accent);font-size:18px;margin:8px 0 0}
-    .modal-purchase-item .units{font-size:12px;color:var(--muted);margin:4px 0 0}
-    .modal-total{background:linear-gradient(105deg,#4338ca,#2563a8);color:#fff;padding:20px;border-radius:8px;text-align:right;margin-bottom:20px}
-    .modal-total .label{color:#e0e7ff;font-weight:600;font-size:12px}
-    .modal-total .amount{font-size:36px;font-weight:700;margin-top:5px}
-    .modal-actions{display:flex;gap:10px;justify-content:flex-end}
+    .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px}
+    .calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+    .calendar-header button{background:var(--accent);color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;font-weight:600;font-size:12px}
+    .calendar-header button:hover{background:#3730a3}
+    .calendar-header span{font-weight:700;color:var(--ink)}
+    .day-cell{padding:10px;border:1px solid var(--line);border-radius:6px;text-align:center;cursor:pointer;background:#fff;transition:all 0.2s}
+    .day-cell:hover{background:var(--accent-bg);border-color:var(--accent)}
+    .day-cell.other-month{color:var(--muted);background:var(--canvas)}
+    .day-cell.today{background:var(--accent);color:#fff;font-weight:700}
+    .day-cell.selected{background:var(--accent);color:#fff;font-weight:700}
+    .day-cell.has-purchases{font-weight:700;border-color:var(--accent);border-width:2px}
+    .purchases-list{margin-top:20px}
+    .purchase-card{background:var(--canvas);padding:15px;border-radius:8px;margin-bottom:10px;border-left:4px solid var(--accent)}
+    .purchase-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .purchase-card-name{font-weight:700;color:var(--ink);font-size:14px}
+    .purchase-card-time{font-size:11px;color:var(--muted)}
+    .purchase-card-items{font-size:12px;color:var(--muted);margin:5px 0}
+    .purchase-card-total{font-weight:700;color:var(--accent);font-size:14px}
+    .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
     .modal-close{background:var(--canvas);color:var(--ink);padding:10px 20px;border-radius:6px;border:1px solid var(--line);cursor:pointer;font-weight:600}
     .modal-close:hover{background:var(--line)}
     @media(max-width:1000px){.workspace{grid-template-columns:1fr;}.catalogue{grid-column:1}
@@ -90,13 +101,14 @@
     .table-header{grid-template-columns:80px 1fr 70px 70px 70px}
     .summary-controls{grid-template-columns:1fr}
     .summary-buttons{flex-wrap:wrap}
-    .purchase-header{flex-direction:column;align-items:stretch}}
+    .purchase-header{flex-direction:column;align-items:stretch}
+    .header-buttons{flex-wrap:wrap}}
     @media(max-width:600px){.topbar{padding:20px;border-radius:11px;margin-bottom:20px}.topbar h1{font-size:28px}
     .topbar .top-actions{justify-content:center}.workspace{gap:15px}
     .product-row,.table-header{grid-template-columns:80px 1fr 60px 60px;gap:8px}
     .product-row .subtotal{display:none}.table-header>div:nth-child(n+3){display:none}
     .product-row>:nth-child(n+3){display:none}.ticket{order:2}.catalogue{order:1}
-    }
+    .header-buttons{flex-direction:column}}
   </style>
 </head>
 <body>
@@ -110,7 +122,7 @@
       <div class="top-actions">
         <a class="button outline" href="index.html">Inicio</a>
         <label id="import-label" class="button outline" for="excel-file">Importar Excel</label>
-        <button id="export-button" class="button outline" disabled>Exportar Excel</button>
+        <button id="history-button" class="button outline">Historial</button>
         <input type="file" id="excel-file" accept=".xlsx,.xls" style="display:none">
       </div>
     </header>
@@ -153,7 +165,10 @@
           <label class="field-label" for="purchase-name">Nombre de la compra</label>
           <input id="purchase-name" placeholder="Ej: Compra Mayorista, Stock Semanal, etc." autocomplete="off">
         </div>
-        <button id="new-purchase" class="button secondary">Nueva compra</button>
+        <div class="header-buttons">
+          <button id="save-purchase" class="button primary" disabled>Guardar compra</button>
+          <button id="new-purchase" class="button secondary">Nueva compra</button>
+        </div>
       </div>
 
       <div class="workspace">
@@ -192,24 +207,26 @@
           </div>
           <div class="ticket-foot">
             <button id="export-button-bottom" class="button primary export-button" disabled>Descargar Excel</button>
-            <p class="note" style="font-size:12px;color:var(--muted);margin:8px 0 0;text-align:center">El archivo incluye la fecha de hoy.</p>
+            <p class="note" style="font-size:12px;color:var(--muted);margin:8px 0 0;text-align:center">Descarga e incluye todos los datos cargados.</p>
           </div>
         </aside>
       </div>
     </section>
   </main>
 
-  <!-- Modal Resumen Diario -->
-  <div class="modal" id="day-summary-modal">
+  <!-- Modal Historial -->
+  <div class="modal" id="history-modal">
     <div class="modal-content">
-      <h2>Resumen de compras del día</h2>
-      <div class="modal-total">
-        <div class="label">TOTAL DEL DÍA</div>
-        <div class="amount" id="modal-day-total">$ 0</div>
+      <h2>📆 Historial de compras</h2>
+      <div class="calendar-header">
+        <button id="prev-month">← Anterior</button>
+        <span id="month-year"></span>
+        <button id="next-month">Siguiente →</button>
       </div>
-      <ul class="modal-purchases" id="modal-purchases-list"></ul>
+      <div class="calendar-grid" id="calendar"></div>
+      <div class="purchases-list" id="purchases-list"></div>
       <div class="modal-actions">
-        <button class="modal-close" onclick="document.getElementById('day-summary-modal').classList.remove('active')">Cerrar</button>
+        <button class="modal-close" onclick="document.getElementById('history-modal').classList.remove('active')">Cerrar</button>
       </div>
     </div>
   </div>
@@ -224,8 +241,10 @@
       subrubro: '',
       purchaseName: '',
       quantities: {},
-      allPurchases: {} // { "YYYY-MM-DD": [{ name, total, items }, ...] }
+      allPurchases: {} // { "YYYY-MM-DD": [{ name, items, timestamp, data }, ...] }
     };
+
+    let calendarDate = new Date();
 
     const $ = s => document.querySelector(s);
     const $$ = s => Array.from(document.querySelectorAll(s));
@@ -239,6 +258,7 @@
     const dateText = () => new Intl.DateTimeFormat('es-AR', { dateStyle: 'medium' }).format(new Date());
     const todayFile = () => new Intl.DateTimeFormat('es-AR', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()).split('/').reverse().join('-');
     const todayKey = () => new Date().toISOString().split('T')[0];
+    const formatDate = (date) => date.toISOString().split('T')[0];
 
     const keyFor = a => String(a.codigo);
 
@@ -410,8 +430,8 @@
 
       const total = items.reduce((sum, a) => sum + calculateSubtotal(a), 0);
       $('#total').textContent = money(total);
-      $('#export-button').disabled = !items.length;
       $('#export-button-bottom').disabled = !items.length;
+      $('#save-purchase').disabled = !items.length || !state.purchaseName.trim();
     }
 
     function updateDaySummary() {
@@ -511,19 +531,71 @@
     $('#purchase-name').addEventListener('input', e => {
       state.purchaseName = e.target.value;
       save();
+      renderTicket();
     });
 
     $('#new-purchase').addEventListener('click', clearQuantities);
+
+    function savePurchase() {
+      const items = sold();
+      if (!items.length || !state.purchaseName.trim()) {
+        showNotice('Complete el nombre y agregue cantidades para guardar.', 'error');
+        return;
+      }
+
+      const today = todayKey();
+      if (!state.allPurchases[today]) {
+        state.allPurchases[today] = [];
+      }
+
+      const totalCost = items.reduce((sum, a) => sum + calculateSubtotal(a), 0);
+      const totalItems = items.reduce((sum, a) => {
+        const qty = getQuantities(keyFor(a));
+        return sum + (qty.x25 * 25 + qty.x40 * 40 + qty.x10 * 10 + qty.sueltas);
+      }, 0);
+
+      const purchaseData = items.map(a => {
+        const qty = getQuantities(keyFor(a));
+        const cost = number(a.costo);
+        const subtotal = calculateSubtotal(a);
+        const totalUnits = qty.x25 * 25 + qty.x40 * 40 + qty.x10 * 10 + qty.sueltas;
+        return {
+          codigo: a.codigo,
+          articulo: a.articulo,
+          subrubro: a.subrubro,
+          x25: qty.x25,
+          x40: qty.x40,
+          x10: qty.x10,
+          sueltas: qty.sueltas,
+          costo: cost,
+          totalUnidades: totalUnits,
+          subtotal: subtotal
+        };
+      });
+
+      state.allPurchases[today].push({
+        name: state.purchaseName,
+        total: totalCost,
+        items: totalItems,
+        timestamp: new Date().toLocaleTimeString('es-AR'),
+        data: purchaseData
+      });
+
+      save();
+      updateDaySummary();
+      clearQuantities();
+      showNotice(`✓ Compra "${state.purchaseName}" guardada correctamente.`, 'success');
+    }
 
     function exportToExcel() {
       const items = sold();
       if (!items.length) return;
 
       const purchaseName = state.purchaseName || 'Compra';
-      const rows = [[purchaseName, '', '', '', '', '']];
-      rows.push(['Fecha:', dateText(), '', '', '', '']);
+      const rows = [[purchaseName, '', '', '', '', '', '', '', '', '']];
+      rows.push(['Fecha:', dateText(), '', '', '', '', '', '', '', '']);
       rows.push([]);
-      rows.push(['Código', 'Artículo', 'Subrubro', 'X25', 'X40', 'X10', 'Sueltas', 'Costo Unitario', 'Total Unidades', 'Costo Total']);
+      rows.push(['Código', 'Artículo', 'Subrubro', 'X25', 'X40', 'X10', 'Sueltas', 'Costo Unitario', 'Total Unidades', 'Total Artículo']);
 
       let grandTotal = 0;
 
@@ -550,7 +622,7 @@
       });
 
       rows.push([]);
-      rows.push(['', '', '', '', '', '', '', '', 'TOTAL:', grandTotal]);
+      rows.push(['', '', '', '', '', '', '', '', 'TOTAL COMPRA:', grandTotal]);
 
       const book = XLSX.utils.book_new();
       const sheet = XLSX.utils.aoa_to_sheet(rows);
@@ -572,29 +644,6 @@
       XLSX.utils.book_append_sheet(book, sheet, 'Compras');
       XLSX.writeFile(book, `${filename}-${todayFile()}.xlsx`);
       showNotice('✓ Archivo Excel descargado correctamente.', 'success');
-
-      // Agregar a compras del día
-      const today = todayKey();
-      if (!state.allPurchases[today]) {
-        state.allPurchases[today] = [];
-      }
-
-      const totalCost = items.reduce((sum, a) => sum + calculateSubtotal(a), 0);
-      const totalItems = items.reduce((sum, a) => {
-        const qty = getQuantities(keyFor(a));
-        return sum + (qty.x25 * 25 + qty.x40 * 40 + qty.x10 * 10 + qty.sueltas);
-      }, 0);
-
-      state.allPurchases[today].push({
-        name: purchaseName,
-        total: totalCost,
-        items: totalItems,
-        timestamp: new Date().toLocaleTimeString('es-AR')
-      });
-
-      // Limpiar para nueva compra
-      clearQuantities();
-      updateDaySummary();
     }
 
     function exportDaySummary() {
@@ -602,24 +651,40 @@
       const purchases = state.allPurchases[today] || [];
       if (!purchases.length) return;
 
-      const rows = [['RESUMEN DE COMPRAS DEL DÍA', '', '']];
-      rows.push(['Fecha:', dateText(), '']);
+      const rows = [['RESUMEN DE COMPRAS DEL DÍA', '', '', '', '', '', '', '', '', '']];
+      rows.push(['Fecha:', dateText(), '', '', '', '', '', '', '', '']);
       rows.push([]);
-      rows.push(['Hora', 'Nombre de Compra', 'Costo Total']);
 
       let dayTotal = 0;
 
       purchases.forEach(p => {
-        rows.push([
-          p.timestamp,
-          p.name,
-          p.total
-        ]);
-        dayTotal += p.total;
+        rows.push([p.name, '', '', '', '', '', '', '', '', '']);
+        rows.push(['Hora:', p.timestamp, '', '', '', '', '', '', '', '']);
+        rows.push(['Código', 'Artículo', 'Subrubro', 'X25', 'X40', 'X10', 'Sueltas', 'Costo Unitario', 'Total Unidades', 'Total Artículo']);
+        
+        let purchaseTotal = 0;
+        p.data.forEach(item => {
+          rows.push([
+            item.codigo,
+            item.articulo,
+            item.subrubro,
+            item.x25 || 0,
+            item.x40 || 0,
+            item.x10 || 0,
+            item.sueltas || 0,
+            item.costo,
+            item.totalUnidades,
+            item.subtotal
+          ]);
+          purchaseTotal += item.subtotal;
+        });
+
+        rows.push(['', '', '', '', '', '', '', '', 'SUBTOTAL:', purchaseTotal]);
+        rows.push([]);
+        dayTotal += purchaseTotal;
       });
 
-      rows.push([]);
-      rows.push(['', 'TOTAL DEL DÍA:', dayTotal]);
+      rows.push(['', '', '', '', '', '', '', '', 'TOTAL DEL DÍA:', dayTotal]);
 
       const book = XLSX.utils.book_new();
       const sheet = XLSX.utils.aoa_to_sheet(rows);
@@ -627,7 +692,14 @@
       sheet['!cols'] = [
         { wch: 12 },
         { wch: 25 },
-        { wch: 18 }
+        { wch: 15 },
+        { wch: 8 },
+        { wch: 8 },
+        { wch: 8 },
+        { wch: 10 },
+        { wch: 14 },
+        { wch: 14 },
+        { wch: 14 }
       ];
 
       XLSX.utils.book_append_sheet(book, sheet, 'Resumen Diario');
@@ -635,34 +707,118 @@
       showNotice('✓ Resumen diario descargado correctamente.', 'success');
     }
 
-    function showDaySummary() {
-      const today = todayKey();
-      const purchases = state.allPurchases[today] || [];
-      const list = $('#modal-purchases-list');
-      list.replaceChildren();
+    function renderCalendar() {
+      const year = calendarDate.getFullYear();
+      const month = calendarDate.getMonth();
+      const today = new Date();
 
+      $('#month-year').textContent = new Intl.DateTimeFormat('es-AR', { month: 'long', year: 'numeric' }).format(calendarDate).toUpperCase();
+
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const prevLastDay = new Date(year, month, 0).getDate();
+
+      const calendar = $('#calendar');
+      calendar.innerHTML = '';
+
+      // Días del mes anterior
+      for (let i = firstDay.getDay() - 1; i >= 0; i--) {
+        const div = document.createElement('div');
+        div.className = 'day-cell other-month';
+        div.textContent = prevLastDay - i;
+        calendar.appendChild(div);
+      }
+
+      // Días del mes actual
+      for (let day = 1; day <= lastDay.getDate(); day++) {
+        const div = document.createElement('div');
+        const cellDate = new Date(year, month, day);
+        const cellDateKey = formatDate(cellDate);
+        const hasPurchases = state.allPurchases[cellDateKey] && state.allPurchases[cellDateKey].length > 0;
+
+        div.className = 'day-cell';
+        if (cellDate.toDateString() === today.toDateString()) div.classList.add('today');
+        if (hasPurchases) div.classList.add('has-purchases');
+
+        div.textContent = day;
+        div.addEventListener('click', () => showPurchasesForDate(cellDateKey));
+        calendar.appendChild(div);
+      }
+
+      // Días del mes siguiente
+      const totalCells = calendar.children.length;
+      for (let day = 1; totalCells + day <= 42; day++) {
+        const div = document.createElement('div');
+        div.className = 'day-cell other-month';
+        div.textContent = day;
+        calendar.appendChild(div);
+      }
+    }
+
+    function showPurchasesForDate(dateKey) {
+      const purchases = state.allPurchases[dateKey] || [];
+      const listContainer = $('#purchases-list');
+      listContainer.innerHTML = '';
+
+      if (!purchases.length) {
+        listContainer.innerHTML = '<p style="text-align:center;color:var(--muted)">Sin compras este día</p>';
+        return;
+      }
+
+      const dateObj = new Date(dateKey + 'T00:00:00');
+      const dateLabel = new Intl.DateTimeFormat('es-AR', { dateStyle: 'medium' }).format(dateObj);
+      
       let dayTotal = 0;
-
       purchases.forEach(p => {
-        const li = document.createElement('li');
-        li.className = 'modal-purchase-item';
-        li.innerHTML = `
-          <p class="name">${escape(p.name)} <small>(${p.timestamp})</small></p>
-          <p class="units">${p.items} unidades</p>
-          <p class="cost">${money(p.total)}</p>
+        const card = document.createElement('div');
+        card.className = 'purchase-card';
+        card.innerHTML = `
+          <div class="purchase-card-header">
+            <span class="purchase-card-name">${escape(p.name)}</span>
+            <span class="purchase-card-time">${p.timestamp}</span>
+          </div>
+          <div class="purchase-card-items">${p.items} unidades</div>
+          <div class="purchase-card-total">${money(p.total)}</div>
         `;
-        list.appendChild(li);
+        listContainer.appendChild(card);
         dayTotal += p.total;
       });
 
-      $('#modal-day-total').textContent = money(dayTotal);
-      $('#day-summary-modal').classList.add('active');
+      const totalDiv = document.createElement('div');
+      totalDiv.style.marginTop = '15px';
+      totalDiv.style.padding = '15px';
+      totalDiv.style.background = 'linear-gradient(105deg,#4338ca,#2563a8)';
+      totalDiv.style.borderRadius = '8px';
+      totalDiv.style.textAlign = 'right';
+      totalDiv.innerHTML = `
+        <div style="color:#e0e7ff;font-weight:600;font-size:12px">TOTAL ${dateLabel}</div>
+        <div style="font-size:28px;font-weight:700;color:#fff;margin-top:5px">${money(dayTotal)}</div>
+      `;
+      listContainer.appendChild(totalDiv);
     }
 
-    $('#export-button').addEventListener('click', exportToExcel);
+    $('#history-button').addEventListener('click', () => {
+      calendarDate = new Date();
+      renderCalendar();
+      showPurchasesForDate(todayKey());
+      $('#history-modal').classList.add('active');
+    });
+
+    $('#prev-month').addEventListener('click', () => {
+      calendarDate.setMonth(calendarDate.getMonth() - 1);
+      renderCalendar();
+      showPurchasesForDate(formatDate(calendarDate));
+    });
+
+    $('#next-month').addEventListener('click', () => {
+      calendarDate.setMonth(calendarDate.getMonth() + 1);
+      renderCalendar();
+      showPurchasesForDate(formatDate(calendarDate));
+    });
+
+    $('#save-purchase').addEventListener('click', savePurchase);
     $('#export-button-bottom').addEventListener('click', exportToExcel);
     $('#export-day').addEventListener('click', exportDaySummary);
-    $('#view-day-summary').addEventListener('click', showDaySummary);
 
     restore();
   </script>
